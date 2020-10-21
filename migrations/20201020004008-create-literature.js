@@ -29,8 +29,14 @@ module.exports = {
       file: {
         type: Sequelize.STRING
       },
+      thumbnail: {
+        type: Sequelize.STRING
+      },
       status: {
         type: Sequelize.STRING
+      },
+      year: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
