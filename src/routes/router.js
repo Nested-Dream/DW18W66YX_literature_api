@@ -27,6 +27,7 @@ const {
   detail: detailLiterature,
   update: updateLiterature,
   filter: filterLiterature,
+  delete: deletLiterature,
 } = require("../controller/literature");
 //router
 router.get("/literature", getLiterature);
@@ -39,6 +40,7 @@ router.post(
   upload("literature"),
   storeLiterature
 );
+router.delete("/literature/:id", authentication, deletLiterature);
 
 //controller relations
 const {
