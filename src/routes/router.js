@@ -26,13 +26,17 @@ const {
   create: storeLiterature,
   detail: detailLiterature,
   update: updateLiterature,
-  filter: filterLiterature,
+  filteryear: filterLiterature,
+  filterTitle: literatureByTitle,
+  search: searchLiterature,
   delete: deletLiterature,
 } = require("../controller/literature");
 //router
 router.get("/literature", getLiterature);
 router.get("/literature/:id", authentication, detailLiterature);
-router.get("/literature/:year", authentication, filterLiterature);
+router.get("/literatures/:year", authentication, filterLiterature);
+router.get("/filterLiterature/:title", authentication, literatureByTitle);
+router.get("/searchLiterature/:title/:year", authentication, searchLiterature);
 router.patch("/literature/:id", authentication, updateLiterature);
 router.post(
   "/literature",

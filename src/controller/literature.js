@@ -1,5 +1,7 @@
 const { Users, Literature, usersLiteratures } = require("../../models");
 const Joi = require("@hapi/joi");
+const { Sequelize } = require("sequelize");
+const Op = Sequelize.Op;
 
 exports.read = async (req, res) => {
   try {
@@ -130,45 +132,6 @@ exports.detail = async (req, res) => {
   }
 };
 
-exports.filter = async (req, res) => {
-  try {
-    const { year } = req.params;
-    const filterLiterature = await Literature.findAll({
-      where: {
-        year,
-      },
-      include: {
-        model: Users,
-        as: "users",
-        through: {
-          model: usersLiteratures,
-          as: "data",
-          attributes: {
-            exclude: ["createdAt", "updatedAt"],
-          },
-        },
-        attributes: {
-          exclude: ["createdAt", "updatedAt", "password"],
-        },
-      },
-      attributes: {
-        exclude: ["createdAt", "updatedAt"],
-      },
-    });
-    res.status(200).send({
-      message: `Literature with year pubclication : ${year} has succesfully loaded`,
-      data: { filterLiterature },
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).send({
-      error: {
-        message: "Server ERROR :(",
-      },
-    });
-  }
-};
-
 exports.update = async (req, res) => {
   try {
     const id = req.params.id;
@@ -206,6 +169,131 @@ exports.delete = async (req, res) => {
     });
     res.status(200).send({
       message: `Book with id: ${id} has successfully deleted`,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      error: {
+        message: "Server ERROR :(",
+      },
+    });
+  }
+};
+
+exports.filteryear = async (req, res) => {
+  try {
+    const { year } = req.params;
+    const filterLiterature = await Literature.findAll({
+      where: {
+        year,
+      },
+      include: {
+        model: Users,
+        as: "users",
+        through: {
+          model: usersLiteratures,
+          as: "data",
+          attributes: {
+            exclude: ["createdAt", "updatedAt"],
+          },
+        },
+        attributes: {
+          exclude: ["createdAt", "updatedAt", "password"],
+        },
+      },
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+    });
+    res.status(200).send({
+      message: `Literature with year pubclication : ${year} has succesfully loaded`,
+      data: { filterLiterature },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      error: {
+        message: "Server ERROR :(",
+      },
+    });
+  }
+};
+exports.filterTitle = async (req, res) => {
+  try {
+    const { title } = req.params;
+    const filterLiterature = await Literature.findAll({
+      where: {
+        title: {
+          [Op.like]: "%" + title + "%",
+        },
+      },
+      include: {
+        model: Users,
+        as: "users",
+        through: {
+          model: usersLiteratures,
+          as: "data",
+          attributes: {
+            exclude: ["createdAt", "updatedAt"],
+          },
+        },
+        attributes: {
+          exclude: ["createdAt", "updatedAt", "password"],
+        },
+      },
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+    });
+    res.status(200).send({
+      message: `Literature with titile like : ${title} has succesfully loaded`,
+      data: { filterLiterature },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      error: {
+        message: "Server ERROR :(",
+      },
+    });
+  }
+};
+
+exports.search = async (req, res) => {
+  try {
+    const { title, year } = req.params;
+    const loadLiterature = await Literature.findAll({
+      include: {
+        model: Users,
+        as: "users",
+        through: {
+          model: usersLiteratures,
+          as: "data",
+          attributes: {
+            exclude: ["createdAt", "updatedAt"],
+          },
+        },
+        attributes: {
+          exclude: ["createdAt", "updatedAt", "password"],
+        },
+      },
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+      where: {
+        title: {
+          [Op.like]: "%" + title + "%",
+        },
+        year: {
+          [Op.like]: "%" + year + "%",
+        },
+      },
+    });
+    res.send({
+      message: `Literature with title like ${title} and date like ${year} loaded successfully`,
+      data: {
+        literatures: loadLiterature,
+      },
     });
   } catch (err) {
     console.log(err);
