@@ -1,5 +1,6 @@
 # DW18W66YX_literature_api <br />
-
+create a new folder with the name "public" and in it,<br />
+create 3 more folders named "avatars", "thumbnails" and "files"<br />
 "author": "rizky-iqbal",<br />
   "license": "ISC",<br />
   "dependencies": {<br />
