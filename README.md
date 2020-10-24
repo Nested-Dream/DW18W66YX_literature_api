@@ -1,7 +1,7 @@
 create a new folder with the name "public" and in it,<br />
 create 3 more folders named "avatars", "thumbnails" and "files"<br />
 
-port : 5000{<br />
+port : 5000<br />
 
 "dependencies": {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"@hapi/joi": "^17.1.1",<br />
