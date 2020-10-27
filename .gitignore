@@ -1,2 +1,4 @@
 node_modules
-public
+public/avatars/**
+public/files/**
+public/thumbnails/**

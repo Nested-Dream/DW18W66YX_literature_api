@@ -26,7 +26,7 @@ const {
   create: storeLiterature,
   detail: detailLiterature,
   update: updateLiterature,
-  filteryear: filterLiterature,
+  filteryear: literatureByYear,
   filterTitle: literatureByTitle,
   search: searchLiterature,
   delete: deletLiterature,
@@ -34,7 +34,7 @@ const {
 //router
 router.get("/literature", getLiterature);
 router.get("/literature/:id", authentication, detailLiterature);
-router.get("/literatures/:year", authentication, filterLiterature);
+router.get("/literatures/:year", authentication, literatureByYear);
 router.get("/filterLiterature/:title", authentication, literatureByTitle);
 router.get("/searchLiterature/:title/:year", authentication, searchLiterature);
 router.patch("/literature/:id", authentication, updateLiterature);

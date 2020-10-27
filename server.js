@@ -17,6 +17,6 @@ app.use("/public/thumbnails", express.static("public/thumbnails"));
 app.use("/api/v1/", router);
 
 //define the server port
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

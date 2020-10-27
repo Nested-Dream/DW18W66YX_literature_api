@@ -73,6 +73,17 @@ exports.create = async (req, res) => {
         },
       });
     }
+    const chechISBN = await Literature.findOne({
+      where: {
+        ISBN,
+      },
+    });
+
+    if (chechISBN) {
+      return res.status(400).send({
+        message: "ISBN is already exists",
+      });
+    }
 
     const literatureCreated = await Literature.create({
       ...req.body,
@@ -185,7 +196,9 @@ exports.filteryear = async (req, res) => {
     const { year } = req.params;
     const filterLiterature = await Literature.findAll({
       where: {
-        year,
+        year: {
+          [Op.gte]: year + "/01/01",
+        },
       },
       include: {
         model: Users,
