@@ -16,8 +16,9 @@ module.exports = {
       [
         {
           email: "admin@admin.com",
-          password: "12345678",
-          fullName: "Siapa Kamu",
+          password:
+            "$2b$10$cz7.AvFl1TRjV0ogmKryzOTsvlzZEucUjeTX1WOx/t2Xgb3R1PbhW",
+          fullname: "Siapa Kamu",
           gender: "Female",
           phone: "080801209318",
           address: "Jln. Marvel Universe, RT.21 RW.69",
@@ -28,11 +29,12 @@ module.exports = {
         },
         {
           email: "rizkiiqbal36@gmail.com",
-          password: "12345678",
-          fullName: "Muhammad Rizky Iqbal Syaifullah",
+          password:
+            "$2b$10$dcVa6fw7BPS3gp8QbO85MO5Va401ExemhreIGW4VnisH8NZNHJIH6",
+          fullname: "Muhammad Rizky Iqbal Syaifullah",
           gender: "Male",
           phone: "082347660388",
-          address: "Jln. Johor No5.A Asrama, Perak Timur, Surabaya ",
+          address: "Jln. Johor No5.A Asrama, Perak Timur, Surabaya",
           avatar: null,
           isAdmin: false,
           createdAt: new Date(),
