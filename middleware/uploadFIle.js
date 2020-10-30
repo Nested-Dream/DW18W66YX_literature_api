@@ -1,8 +1,9 @@
-const multer = require('multer');
-const path = require('path');
+const multer = require("multer");
+const path = require("path");
 
 exports.upload = (fieldName) => {
   // set storage
+  //set storages
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, `public/${file.fieldname}s`);
@@ -10,7 +11,7 @@ exports.upload = (fieldName) => {
     filename: (req, file, cb) => {
       cb(
         null,
-        file.fieldname + '-' + Date.now() + path.extname(file.originalname)
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
       );
     },
   });
@@ -19,22 +20,22 @@ exports.upload = (fieldName) => {
 
   // set filter
   const fileFilter = (req, file, cb) => {
-    if (file.fieldname === 'file') {
+    if (file.fieldname === "file") {
       validExtension = /\.(pdf|epub)$/;
-      fileType = 'epub or pdf';
+      fileType = "epub or pdf";
       maxSize = 5 * 1000 * 1000;
-      limitSize = '5 MB';
+      limitSize = "5 MB";
     } else {
       validExtension = /\.(jpg|jpeg|png)$/;
-      fileType = 'image';
+      fileType = "image";
       maxSize = 2 * 1000 * 1000;
-      limitSize = '2 MB';
+      limitSize = "2 MB";
     }
 
     const extname = path.extname(file.originalname).toLowerCase();
     if (!extname.match(validExtension)) {
       req.fileValidationError = {
-        status: 'fail',
+        status: "fail",
         message: `Please select an ${fileType} file!`,
         code: 400,
       };
@@ -46,7 +47,7 @@ exports.upload = (fieldName) => {
 
   // init upload
   let upload;
-  if (fieldName === 'avatar') {
+  if (fieldName === "avatar") {
     upload = multer({
       storage,
       limits: {
@@ -60,7 +61,7 @@ exports.upload = (fieldName) => {
       limits: {
         fileSize: maxSize,
       },
-    }).fields([{ name: 'thumbnail' }, { name: 'file' }]);
+    }).fields([{ name: "thumbnail" }, { name: "file" }]);
   }
 
   return (req, res, next) => {
@@ -70,15 +71,15 @@ exports.upload = (fieldName) => {
 
       if (!req.file && !req.files && !err)
         return res.status(400).send({
-          status: 'fail',
-          message: 'Please select a file to upload',
+          status: "fail",
+          message: "Please select a file to upload",
           code: 400,
         });
 
       if (err) {
-        if (err.code === 'LIMIT_FILE_SIZE') {
+        if (err.code === "LIMIT_FILE_SIZE") {
           return res.status(400).send({
-            status: 'fail',
+            status: "fail",
             message: `Max file sized ${limitSize}`,
             code: 400,
           });
