@@ -13,9 +13,12 @@
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
+
   "production": {
-    "use_env_variable": "DATABASE_URL",
-    "dialect": "postgres",
-    "protocol": "postgres"
+    "username": "zqpjqcpzdfzhti",
+    "password": "6d931946c7992f109f241a4a7a22570c2847a15719c0c0849d15fa8e0cf769fe",
+    "database": "d3c1g2u9dt2rcd",
+    "host": "ec2-3-216-92-193.compute-1.amazonaws.com",
+    "dialect": "postgres"
   }
 }
