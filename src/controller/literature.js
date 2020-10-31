@@ -197,7 +197,7 @@ exports.filteryear = async (req, res) => {
     const filterLiterature = await Literature.findAll({
       where: {
         year: {
-          [Op.gte]: year + "/01/01",
+          [Op.gte]: year,
         },
       },
       include: {
@@ -298,7 +298,7 @@ exports.search = async (req, res) => {
           [Op.like]: "%" + title + "%",
         },
         year: {
-          [Op.like]: "%" + year + "%",
+          [Op.gte]: year,
         },
       },
     });
