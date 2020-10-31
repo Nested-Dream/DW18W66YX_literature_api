@@ -41,6 +41,7 @@ exports.register = async (req, res) => {
       phone,
       address,
       isAdmin,
+      avatar,
     } = req.body;
 
     const schema = joi.object({
@@ -53,7 +54,8 @@ exports.register = async (req, res) => {
         .regex(/^[0-9]+$/)
         .required(),
       address: joi.string().required(),
-      isAdmin,
+      isAdmin: joi.required(),
+      avatar: joi.required(),
     });
 
     const { error } = schema.validate(req.body);
@@ -88,6 +90,7 @@ exports.register = async (req, res) => {
       phone,
       address,
       isAdmin,
+      avatar,
     });
 
     const token = jwt.sign(
