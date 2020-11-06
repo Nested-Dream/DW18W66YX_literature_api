@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { authentication } = require("../../middleware/authentication");
 const { upload } = require("../../middleware/uploadFIle");
+const { cloudUpload } = require("../../middleware/cloudinaryUpload");
 //controller register & login
 const { register, login, checkAuth } = require("../controller/auth");
 //router auth register & login
@@ -18,7 +19,7 @@ const {
 //route user
 router.get("/users", getUsers);
 router.get("/user/:id", authentication, specificUser);
-router.patch("/users/:id", authentication, upload("avatar"), updateUser);
+router.patch("/users/:id", authentication, cloudUpload("avatar"), updateUser);
 
 //controller literatur
 const {
@@ -41,7 +42,7 @@ router.patch("/literature/:id", authentication, updateLiterature);
 router.post(
   "/literature",
   authentication,
-  upload("literature"),
+  cloudUpload("literature"),
   storeLiterature
 );
 router.delete("/literature/:id", authentication, deletLiterature);
@@ -54,7 +55,7 @@ const {
   delete: deletRelation,
 } = require("../controller/relations");
 //router relations
-router.get("/relation", getRelations);
+router.get("/relations", getRelations);
 router.get("/relation/:id", authentication, detailRelation);
 router.post("/relation", authentication, storeRelation);
 router.delete("/relation/:LiteratureId/:UserId", authentication, deletRelation);

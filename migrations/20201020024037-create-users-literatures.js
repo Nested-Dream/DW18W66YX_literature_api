@@ -16,7 +16,7 @@ module.exports = {
           key: "id",
         },
         onUpdate: "CASCADE",
-        pnDelete: "CASCADE",
+        onDelete: "CASCADE",
       },
       LiteratureId: {
         allowNull: false,
