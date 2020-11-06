@@ -12,5 +12,5 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"nodemon": "^2.0.6",<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pg": "^8.4.2",
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sequelize": "^6.3.5"<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sequelize-cli": "^6.2.0"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sequelize-cli": "^6.2.0"<br />
 },<br />
